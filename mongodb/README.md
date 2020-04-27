@@ -361,16 +361,14 @@ db.stocks.aggregate([
 ])
 ```
 
-## Exercício 3 (seria 4?) – Fraude na Enron! 
+## Exercício 3 – Fraude na Enron! 
 
 Um dos casos mais emblemáticos de fraude no mundo é o caso da Enron. A comunicade do MongoDB utiliza muito esse dataset pois o mesmo se tornou público, então vamos importar esse material também: 
- 
-(OBS: alterada collection para manter a stocks no banco)
 ```
 mongoimport --db stocks --collection eron --file enron.json 
 ```
 
-1d. Liste as pessoas que enviaram e-mails (de forma distinta, ou seja, sem repetir). Quantas pessoas são? 
+1. Liste as pessoas que enviaram e-mails (de forma distinta, ou seja, sem repetir). Quantas pessoas são? 
 ```
 db.enron.distinct("sender")
 ```

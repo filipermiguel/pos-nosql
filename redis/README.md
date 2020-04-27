@@ -4,7 +4,7 @@
 
 - NodeJs (https://github.com/nodejs);
 - IoRedis (https://github.com/luin/ioredis);
-- Redis Server.
+- Redis Server (https://redis.io/download).
 
 ## Instalação
 

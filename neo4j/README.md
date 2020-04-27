@@ -1,10 +1,12 @@
-Exercícios Neo4
+## Neo4j
 
+## Exercício 1- Retrieving Nodes
 1.1 MATCH (n) RETURN n
 1.2 CALL db.schema()
 1.3 MATCH (p:Person) RETURN p
 1.4 MATCH (m:Movie) RETURN m
 
+## Exercício 2 – Filtering queries using property values
 2.1 MATCH (m:Movie {released:2003}) RETURN m
 2.2
 2.3 CALL db.propertyKeys
@@ -12,12 +14,14 @@ Exercícios Neo4
 2.5 MATCH (m:Movie) RETURN m.title, m.released, m.tagline
 2.6 MATCH (m:Movie) RETURN m.title AS `movie title`, m.released AS released, m.tagline AS tagLine
 
+## Exercício 3 - Filtering queries using relationships
 3.1 CALL db.schema
 3.2 MATCH (p:Person)-[:WROTE]->(:Movie {title: 'Speed Racer'}) RETURN p.name
 3.3 MATCH (m:Movie)<--(:Person {name: 'Tom Hanks'}) RETURN m.title
 3.4 MATCH (m:Movie)-[rel]-(:Person {name: 'Tom Hanks'}) RETURN m.title, type(rel)
 3.5 MATCH (m:Movie)-[rel:ACTED_IN]-(:Person {name: 'Tom Hanks'}) RETURN m.title, rel.roles
 
+## Exercício 4 – Filtering queries using WHERE clause
 4.1 MATCH (a:Person)-[:ACTED_IN]->(m:Movie)
 WHERE a.name = 'Tom Cruise'
 RETURN m.title as Movie
@@ -58,6 +62,7 @@ RETURN m.title, m.released
 WHERE m.title in r.roles
 RETURN  m.title as Movie, a.name as Actor
 
+## Exercício 5 – Controlling query processing
 5.1 MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person),
       (a2:Person)-[:ACTED_IN]->(m)
 WHERE a.name = 'Gene Hackman'
@@ -98,6 +103,7 @@ WHERE directors >= 2
 OPTIONAL MATCH (p:Person)-[:REVIEWED]->(m)
 RETURN  m.title, p.name
 
+## Exercício 6 – Controlling results returned
 6.1 MATCH (a:Person)-[:ACTED_IN]->(m:Movie)
 WHERE m.released >= 1990 AND m.released < 2000
 RETURN DISTINCT m.released, m.title, collect(a.name)
@@ -119,6 +125,7 @@ WITH  a,  count(a) AS numMovies, collect(m.title) AS movies
 WHERE numMovies <= 3
 RETURN a.name, movies
 
+## Exercício 7 – Working with cypher data
 7.1 MATCH (a:Person)-[:ACTED_IN]->(m:Movie),
       (m)<-[:PRODUCED]-(p:Person)
 WITH  m, collect(DISTINCT a.name) AS cast, collect(DISTINCT p.name) AS producers
@@ -138,6 +145,7 @@ WHERE a.name = 'Tom Hanks'
 RETURN  m.title, m.released, date().year  - m.released as yearsAgoReleased, m.released  - a.born AS `age of Tom`
 ORDER BY yearsAgoReleased
 
+## Exercício 8 – Creating nodes
 8.1 CREATE (:Movie {title: 'Forrest Gump'})
 8.2 MATCH (m:Movie)
 WHERE m.title = 'Forrest Gump'
@@ -188,6 +196,7 @@ REMOVE p.birthPlace
 WHERE p.name = 'Robin Wright'
 RETURN p
 
+## Exercício 9 – Creating relationships
 9.1 MATCH (m:Movie)
 WHERE m.title = 'Forrest Gump'
 MATCH (p:Person)
@@ -234,6 +243,7 @@ REMOVE rel.research
 WHERE m.title = 'Forrest Gump'
 return p, rel, m
 
+## Exercício 10 – Deleting nodes and relationships
 10.1 MATCH (:Person)-[rel:HELPED]-(:Person)
 DELETE rel
 10.2 MATCH (:Person)-[rel:HELPED]-(:Person)

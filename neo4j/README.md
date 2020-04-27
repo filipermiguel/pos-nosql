@@ -2,8 +2,11 @@
 
 ## Exercício 1- Retrieving Nodes
 1.1 MATCH (n) RETURN n
+
 1.2 CALL db.schema()
+
 1.3 MATCH (p:Person) RETURN p
+
 1.4 MATCH (m:Movie) RETURN m
 
 ## Exercício 2 – Filtering queries using property values
